@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 // material-ui
 import {
@@ -45,8 +46,21 @@ const AuthLogin = () => {
         event.preventDefault();
     };
 
-    const handleLoginClick = () => {
-        navigate('/');
+    const handleLoginClick = async (event) => {
+        event.preventDefault();
+        const id = Math.floor(Math.random() * 10) + 1;
+        axios({
+            method: 'GET',
+            url: `https://jsonplaceholder.typicode.com/users/${id}`
+        })
+            .then((res) => {
+                const userInfo = JSON.stringify(res.data);
+                localStorage.setItem('userinfo', userInfo);
+                navigate('/');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
