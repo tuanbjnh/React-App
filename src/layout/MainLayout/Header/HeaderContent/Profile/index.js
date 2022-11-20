@@ -58,7 +58,6 @@ const Profile = () => {
     const theme = useTheme();
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userinfo')));
-    console.log(userInfo);
     const handleLogout = async () => {
         // logout
         localStorage.clear();
